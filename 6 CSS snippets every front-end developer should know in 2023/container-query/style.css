@@ -1,0 +1,54 @@
+@layer demo {
+  /* 1st column */
+  .panel {
+    container: layers-panel / inline-size;
+  }
+
+  /* 2nd column */
+  main {
+    container: main-panel / inline-size;
+  }
+
+  .card {
+    background: hotpink;
+  }
+
+  /* not specifying the container? 
+       CSS finds the nearest  */
+  @container (max-width: 20rem) {
+    .card {
+      background: cyan;
+    }
+  }
+}
+
+@layer demo.card {
+  .card {
+    aspect-ratio: 3/4;
+    max-inline-size: 30rem;
+    border-radius: 10px;
+  }
+}
+
+@layer demo.support {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  html {
+    block-size: 100%;
+    color-scheme: dark light;
+  }
+
+  body {
+    min-block-size: 100%;
+    font-family: system-ui, sans-serif;
+
+    display: grid;
+    grid-template-columns: 35vmin 1fr;
+    place-content: start center;
+    padding: 5vmin;
+    gap: 5vmin;
+  }
+}
